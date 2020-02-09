@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration page</title>
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+</head>
+<body>
+    <div id="container">
+        <h2>Registration page</h2>
+        <p th:if="${registerError}" class="error">User exists</p>
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <label for="username">Username</label>:
+            <input type="text" id="username" name="username"/>
+            <label for="password">Password</label>:
+            <input type="password" id="password" name="password" />
+            <label>Role</label>:
+            <select name="authorityName">
+                <option th:each="authorityOpt : ${T(pl.akademiaspring.week3.entity.types.AuthorityType).values()}"
+                        th:value="${authorityOpt}" th:text="${authorityOpt.name}">
+                </option>
+            </select>
+            <input type="submit" value="Sing Up" />
+        </form>
+    </div>
+</body>
+</html>
